@@ -71,11 +71,11 @@ function formatGitHubError(error: GitHubError): string {
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
-#      {
-#        name: "create_or_update_file",
-#        description: "Create or update a single file in a GitHub repository",
-#        inputSchema: zodToJsonSchema(files.CreateOrUpdateFileSchema),
-#      },
+//      {
+//        name: "create_or_update_file",
+//        description: "Create or update a single file in a GitHub repository",
+//        inputSchema: zodToJsonSchema(files.CreateOrUpdateFileSchema),
+//      },
       {
         name: "search_repositories",
         description: "Search for GitHub repositories",
@@ -96,16 +96,16 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: "Push multiple files to a GitHub repository in a single commit",
         inputSchema: zodToJsonSchema(files.PushFilesSchema),
       },
-#      {
-#        name: "create_issue",
-#        description: "Create a new issue in a GitHub repository",
-#        inputSchema: zodToJsonSchema(issues.CreateIssueSchema),
-#      },
-#      {
-#        name: "create_pull_request",
-#        description: "Create a new pull request in a GitHub repository",
-#        inputSchema: zodToJsonSchema(pulls.CreatePullRequestSchema),
-#      },
+//      {
+//        name: "create_issue",
+//        description: "Create a new issue in a GitHub repository",
+//        inputSchema: zodToJsonSchema(issues.CreateIssueSchema),
+//      },
+//      {
+//        name: "create_pull_request",
+//        description: "Create a new pull request in a GitHub repository",
+//        inputSchema: zodToJsonSchema(pulls.CreatePullRequestSchema),
+//      },
       {
         name: "fork_repository",
         description: "Fork a GitHub repository to your account or specified organization",
@@ -121,16 +121,16 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: "Get list of commits of a branch in a GitHub repository",
         inputSchema: zodToJsonSchema(commits.ListCommitsSchema)
       },
-#      {
-#        name: "list_issues",
-#        description: "List issues in a GitHub repository with filtering options",
-#        inputSchema: zodToJsonSchema(issues.ListIssuesOptionsSchema)
-#      },
-#      {
-#        name: "update_issue",
-#        description: "Update an existing issue in a GitHub repository",
-#        inputSchema: zodToJsonSchema(issues.UpdateIssueOptionsSchema)
-#      },
+//      {
+//        name: "list_issues",
+//        description: "List issues in a GitHub repository with filtering options",
+//        inputSchema: zodToJsonSchema(issues.ListIssuesOptionsSchema)
+//      },
+//      {
+//        name: "update_issue",
+//        description: "Update an existing issue in a GitHub repository",
+//        inputSchema: zodToJsonSchema(issues.UpdateIssueOptionsSchema)
+//      },
       {
         name: "add_issue_comment",
         description: "Add a comment to an existing issue",
@@ -161,21 +161,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: "Get details of a specific pull request",
         inputSchema: zodToJsonSchema(pulls.GetPullRequestSchema)
       },
-#      {
-#        name: "list_pull_requests",
-#        description: "List and filter repository pull requests",
-#        inputSchema: zodToJsonSchema(pulls.ListPullRequestsSchema)
-#      },
-#      {
-#        name: "create_pull_request_review",
-#        description: "Create a review on a pull request",
-#        inputSchema: zodToJsonSchema(pulls.CreatePullRequestReviewSchema)
-#      },
-#      {
-#        name: "merge_pull_request",
-#        description: "Merge a pull request",
-#        inputSchema: zodToJsonSchema(pulls.MergePullRequestSchema)
-#      },
+//      {
+//        name: "list_pull_requests",
+//        description: "List and filter repository pull requests",
+//        inputSchema: zodToJsonSchema(pulls.ListPullRequestsSchema)
+//      },
+//      {
+//        name: "create_pull_request_review",
+//        description: "Create a review on a pull request",
+//        inputSchema: zodToJsonSchema(pulls.CreatePullRequestReviewSchema)
+//      },
+//      {
+//        name: "merge_pull_request",
+//        description: "Merge a pull request",
+//        inputSchema: zodToJsonSchema(pulls.MergePullRequestSchema)
+//      },
       {
         name: "get_pull_request_files",
         description: "Get the list of files changed in a pull request",
