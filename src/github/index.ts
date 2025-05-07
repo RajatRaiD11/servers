@@ -266,21 +266,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
       }
 
-      case "create_or_update_file": {
-        const args = files.CreateOrUpdateFileSchema.parse(request.params.arguments);
-        const result = await files.createOrUpdateFile(
-          args.owner,
-          args.repo,
-          args.path,
-          args.content,
-          args.message,
-          args.branch,
-          args.sha
-        );
-        return {
-          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
-        };
-      }
+//      case "create_or_update_file": {
+//        const args = files.CreateOrUpdateFileSchema.parse(request.params.arguments);
+//        const result = await files.createOrUpdateFile(
+//          args.owner,
+//          args.repo,
+//          args.path,
+//          args.content,
+//          args.message,
+//          args.branch,
+//          args.sha
+//        );
+//        return {
+//          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+//        };
+//      }
 
       case "push_files": {
         const args = files.PushFilesSchema.parse(request.params.arguments);
@@ -296,51 +296,51 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
       }
 
-      case "create_issue": {
-        const args = issues.CreateIssueSchema.parse(request.params.arguments);
-        const { owner, repo, ...options } = args;
-        
-        try {
-          console.error(`[DEBUG] Attempting to create issue in ${owner}/${repo}`);
-          console.error(`[DEBUG] Issue options:`, JSON.stringify(options, null, 2));
-          
-          const issue = await issues.createIssue(owner, repo, options);
-          
-          console.error(`[DEBUG] Issue created successfully`);
-          return {
-            content: [{ type: "text", text: JSON.stringify(issue, null, 2) }],
-          };
-        } catch (err) {
-          // Type guard for Error objects
-          const error = err instanceof Error ? err : new Error(String(err));
-          
-          console.error(`[ERROR] Failed to create issue:`, error);
-          
-          if (error instanceof GitHubResourceNotFoundError) {
-            throw new Error(
-              `Repository '${owner}/${repo}' not found. Please verify:\n` +
-              `1. The repository exists\n` +
-              `2. You have correct access permissions\n` +
-              `3. The owner and repository names are spelled correctly`
-            );
-          }
-          
-          // Safely access error properties
-          throw new Error(
-            `Failed to create issue: ${error.message}${
-              error.stack ? `\nStack: ${error.stack}` : ''
-            }`
-          );
-        }
-      }
+//      case "create_issue": {
+//        const args = issues.CreateIssueSchema.parse(request.params.arguments);
+//        const { owner, repo, ...options } = args;
+//        
+//        try {
+//          console.error(`[DEBUG] Attempting to create issue in ${owner}/${repo}`);
+//          console.error(`[DEBUG] Issue options:`, JSON.stringify(options, null, 2));
+//          
+//          const issue = await issues.createIssue(owner, repo, options);
+//          
+//          console.error(`[DEBUG] Issue created successfully`);
+//          return {
+//            content: [{ type: "text", text: JSON.stringify(issue, null, 2) }],
+//          };
+//        } catch (err) {
+//          // Type guard for Error objects
+//          const error = err instanceof Error ? err : new Error(String(err));
+//          
+//          console.error(`[ERROR] Failed to create issue:`, error);
+//          
+//          if (error instanceof GitHubResourceNotFoundError) {
+//            throw new Error(
+//              `Repository '${owner}/${repo}' not found. Please verify:\n` +
+//              `1. The repository exists\n` +
+//              `2. You have correct access permissions\n` +
+//              `3. The owner and repository names are spelled correctly`
+//            );
+//          }
+//          
+//          // Safely access error properties
+//          throw new Error(
+//            `Failed to create issue: ${error.message}${
+//              error.stack ? `\nStack: ${error.stack}` : ''
+//            }`
+//          );
+//        }
+//      }
 
-      case "create_pull_request": {
-        const args = pulls.CreatePullRequestSchema.parse(request.params.arguments);
-        const pullRequest = await pulls.createPullRequest(args);
-        return {
-          content: [{ type: "text", text: JSON.stringify(pullRequest, null, 2) }],
-        };
-      }
+//      case "create_pull_request": {
+//        const args = pulls.CreatePullRequestSchema.parse(request.params.arguments);
+//        const pullRequest = await pulls.createPullRequest(args);
+//        return {
+//          content: [{ type: "text", text: JSON.stringify(pullRequest, null, 2) }],
+//        };
+//      }
 
       case "search_code": {
         const args = search.SearchCodeSchema.parse(request.params.arguments);
@@ -366,23 +366,23 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
       }
 
-      case "list_issues": {
-        const args = issues.ListIssuesOptionsSchema.parse(request.params.arguments);
-        const { owner, repo, ...options } = args;
-        const result = await issues.listIssues(owner, repo, options);
-        return {
-          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
-        };
-      }
+//      case "list_issues": {
+//        const args = issues.ListIssuesOptionsSchema.parse(request.params.arguments);
+//        const { owner, repo, ...options } = args;
+//        const result = await issues.listIssues(owner, repo, options);
+//        return {
+//          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+//        };
+//      }
 
-      case "update_issue": {
-        const args = issues.UpdateIssueOptionsSchema.parse(request.params.arguments);
-        const { owner, repo, issue_number, ...options } = args;
-        const result = await issues.updateIssue(owner, repo, issue_number, options);
-        return {
-          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
-        };
-      }
+//      case "update_issue": {
+//        const args = issues.UpdateIssueOptionsSchema.parse(request.params.arguments);
+//        const { owner, repo, issue_number, ...options } = args;
+//        const result = await issues.updateIssue(owner, repo, issue_number, options);
+//        return {
+//          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+//        };
+//      }
 
       case "add_issue_comment": {
         const args = issues.IssueCommentSchema.parse(request.params.arguments);
@@ -423,32 +423,32 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         };
       }
 
-      case "list_pull_requests": {
-        const args = pulls.ListPullRequestsSchema.parse(request.params.arguments);
-        const { owner, repo, ...options } = args;
-        const pullRequests = await pulls.listPullRequests(owner, repo, options);
-        return {
-          content: [{ type: "text", text: JSON.stringify(pullRequests, null, 2) }],
-        };
-      }
+//      case "list_pull_requests": {
+//        const args = pulls.ListPullRequestsSchema.parse(request.params.arguments);
+//        const { owner, repo, ...options } = args;
+//        const pullRequests = await pulls.listPullRequests(owner, repo, options);
+//        return {
+//          content: [{ type: "text", text: JSON.stringify(pullRequests, null, 2) }],
+//        };
+//      }
 
-      case "create_pull_request_review": {
-        const args = pulls.CreatePullRequestReviewSchema.parse(request.params.arguments);
-        const { owner, repo, pull_number, ...options } = args;
-        const review = await pulls.createPullRequestReview(owner, repo, pull_number, options);
-        return {
-          content: [{ type: "text", text: JSON.stringify(review, null, 2) }],
-        };
-      }
+//      case "create_pull_request_review": {
+//        const args = pulls.CreatePullRequestReviewSchema.parse(request.params.arguments);
+//        const { owner, repo, pull_number, ...options } = args;
+//        const review = await pulls.createPullRequestReview(owner, repo, pull_number, options);
+//        return {
+//          content: [{ type: "text", text: JSON.stringify(review, null, 2) }],
+//        };
+//      }
 
-      case "merge_pull_request": {
-        const args = pulls.MergePullRequestSchema.parse(request.params.arguments);
-        const { owner, repo, pull_number, ...options } = args;
-        const result = await pulls.mergePullRequest(owner, repo, pull_number, options);
-        return {
-          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
-        };
-      }
+//      case "merge_pull_request": {
+//        const args = pulls.MergePullRequestSchema.parse(request.params.arguments);
+//        const { owner, repo, pull_number, ...options } = args;
+//        const result = await pulls.mergePullRequest(owner, repo, pull_number, options);
+//        return {
+//          content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+//        };
+//      }
 
       case "get_pull_request_files": {
         const args = pulls.GetPullRequestFilesSchema.parse(request.params.arguments);
